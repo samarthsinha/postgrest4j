@@ -1,0 +1,1 @@
+web: java -jar target/postgrest4j-0.0.1-SNAPSHOT.jar
