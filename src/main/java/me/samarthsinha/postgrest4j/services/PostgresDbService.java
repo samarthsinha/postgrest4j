@@ -5,8 +5,10 @@ import me.samarthsinha.postgrest4j.models.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import javax.transaction.Transactional;
 import java.sql.*;
@@ -23,6 +25,14 @@ public class PostgresDbService implements DbServices {
 
     @Autowired
     MasterConfigurationRepo masterConfigurationRepo;
+
+    @Value("${spring.datasource.url}")
+    String url;
+
+    @PostConstruct
+    public void init(){
+        LOGGER.info("DATABASE URL::"+url);
+    }
 
     @Transactional
     @Override
